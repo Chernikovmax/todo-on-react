@@ -14,12 +14,19 @@ class Wrapper extends React.Component {
     this.editTask = this.editTask.bind(this);
     this.sortOutTasks = this.sortOutTasks.bind(this);
     this.addTask = this.addTask.bind(this);
+    this._getNewTaskRef = this._getNewTaskRef.bind(this);
   }
 
-  addTask(text) {
+  addTask() {
+    let text = this.newTaskInputRef.value;
+    if (text === "") {
+      // this.newTaskInputRef.classList.add('task-input--error');
+      return alert('You need to enter a task.');
+    }
     let arrOfTasks = this.state.tasks;
     arrOfTasks.push(text);
     this.setState({tasks: arrOfTasks});
+    this.newTaskInputRef.value = '';
   }
 
   deleteTask(i) {
@@ -42,13 +49,18 @@ class Wrapper extends React.Component {
     );
   }
 
+  _getNewTaskRef(node) {
+    this.newTaskInputRef = node;
+  }
+
   render() {
-    const textInput = document.get
     return (
       <div className="wrapper">
         <div className="input-task-wrapper">
-          <textarea autofocus rows="2" ref="newText" placeholder="Write your task here"></textarea>
-          <button onClick={this.addTask.bind(null, '')} className="btn new-task-btn">+</button>
+          <textarea className="task-input" autoFocus={true} rows="2" ref={this._getNewTaskRef}
+            placeholder="Write your task here">
+          </textarea>
+          <button onClick={this.addTask} className="btn new-task-btn">+</button>
         </div>
         {this.state.tasks.map(this.sortOutTasks)}
       </div>

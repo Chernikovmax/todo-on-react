@@ -11,6 +11,7 @@ class App extends React.Component {
     this.remove = this.remove.bind(this);
     this.save = this.save.bind(this);
     this.usualRender = this.usualRender.bind(this);
+    this._getRef = this._getRef.bind(this);
   }
 
   edit() {
@@ -18,8 +19,12 @@ class App extends React.Component {
   }
 
   save() {
-    this.props.edit(this.refs.newText.value, this.props.index);
+    this.props.edit(this.textArea.value, this.props.index);
     this.setState({edit: false});
+  }
+
+  _getRef(node) {
+    this.textArea = node;
   }
 
   remove() {
@@ -29,7 +34,7 @@ class App extends React.Component {
   usualRender() {
     return (
       <div className="box">
-        <span className="text">{this.props.children}</span>
+        <p className="text">{this.props.children}</p>
         <section className="buttons">
           <button onClick={this.edit} className="btn light">Edit</button>
           <button onClick={this.remove} className="btn red">Remove</button>
@@ -40,7 +45,7 @@ class App extends React.Component {
   renderOnEdit() {
     return (
       <div className="box">
-        <textarea autofocus rows="6" ref="newText" defaultValue={this.props.children}></textarea>
+        <textarea autoFocus={true} rows="6" ref={this._getRef} defaultValue={this.props.children}></textarea>
         <section className="buttons">
           <button onClick={this.save} className="btn success">Save</button>
         </section>

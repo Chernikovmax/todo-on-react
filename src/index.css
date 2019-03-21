@@ -24,9 +24,17 @@ code {
   justify-content: space-between;
 }
 
-.input-task-wrapper > textarea {
+.task-input {
   width: 90%;
+  border: none;
+  border-bottom: 2px solid #6e4d0c;
+  padding-top: 1rem;
+  padding-left: 0.6rem;
 }
+/* 
+.task-input--error {
+  border: 2px solid ##d40d0d;
+} */
 
 .btn.new-task-btn {
   border: 2px solid #b36f1f;
