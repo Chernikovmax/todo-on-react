@@ -6,12 +6,41 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  height: auto;
-  background-color: #eeebdb;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  width: 100%;
+}
+
+.input-task-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  justify-content: space-between;
+}
+
+.input-task-wrapper > textarea {
+  width: 90%;
+}
+
+.btn.new-task-btn {
+  border: 2px solid #b36f1f;
+  background-color: #f1c734;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-style: bold;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.btn.new-task-btn:hover {
+  border-color: #8f520b;
+  background-color: #be9506;
 }

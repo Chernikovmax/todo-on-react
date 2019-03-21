@@ -1,52 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super()
+class App extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      items: [];
-      currentItem: {text:'', key:''}
-    }
+      edit: false,
+    };
+    this.edit = this.edit.bind(this);
+    this.remove = this.remove.bind(this);
+    this.save = this.save.bind(this);
+    this.usualRender = this.usualRender.bind(this);
   }
-  render() {
-    return (
-      <div className="todo">
-        <TodoList addItem={this.addItem} />
-      </div>
-    );
-  }
-}
 
-class TodoList extends Component {
-  render() {
+  edit() {
+    this.setState({edit: true});
+  }
+
+  save() {
+    this.props.edit(this.refs.newText.value, this.props.index);
+    this.setState({edit: false});
+  }
+
+  remove() {
+    this.props.deleteTaskBlock(this.props.index)
+  }
+
+  usualRender() {
     return (
-      <div className="todo-list-main">
-        <form className="input-task-wrapper"
-        onSubmit={this.props.addItem}>
-          <textarea className="todo__task-input" name="task-input" rows="6" placeholder="WRITE NEW TASK HERE"></textarea>
-          <button type="submit" className="todo__add-task-btn">ADD TASK</button>
-        </form>
-        <section className="todo__tasks">
+      <div className="box">
+        <span className="text">{this.props.children}</span>
+        <section className="buttons">
+          <button onClick={this.edit} className="btn light">Edit</button>
+          <button onClick={this.remove} className="btn red">Remove</button>
         </section>
       </div>
     )
   }
-}
+  renderOnEdit() {
+    return (
+      <div className="box">
+        <textarea autofocus rows="6" ref="newText" defaultValue={this.props.children}></textarea>
+        <section className="buttons">
+          <button onClick={this.save} className="btn success">Save</button>
+        </section>
+      </div>
+    )
+  }
 
-class Tasks extends Component {
   render() {
-    let tasks = this.state.tasks;
-      return (
-        <div>{
-          tasks.map((task, index) => (
-          <div key={task.id} className="todo__task" onClick={()=>this.markAsDone(task.id)}>
-            <input type="checkbox" id={task.id}/>
-            <label className="todo__task-text" for={task.id}>{task.todo}</label>
-          </div>
-          ))
-        }</div>
-      );
+    if (this.state.edit === false) {
+      return this.usualRender();
+    } else {
+      return this.renderOnEdit();
+    }
   }
 }
 
