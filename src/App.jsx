@@ -36,8 +36,8 @@ class App extends React.Component {
       <div className="box">
         <p className="text">{this.props.children}</p>
         <section className="buttons">
-          <button onClick={this.edit} className="btn light">Edit</button>
-          <button onClick={this.remove} className="btn red">Remove</button>
+          <button onClick={this.edit} className="btn edit-btn">Edit</button>
+          <button onClick={this.remove} className="btn remove-btn">Remove</button>
         </section>
       </div>
     )
@@ -47,7 +47,7 @@ class App extends React.Component {
       <div className="box">
         <textarea autoFocus={true} rows="6" ref={this._getRef} defaultValue={this.props.children}></textarea>
         <section className="buttons">
-          <button onClick={this.save} className="btn success">Save</button>
+          <button onClick={this.save} className="btn save-btn">Save</button>
         </section>
       </div>
     )

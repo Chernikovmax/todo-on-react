@@ -1,5 +1,5 @@
 body {
-  background-color: #e4d89a;
+  background-color: #ebdab0;
 }
 
 .wrapper {
@@ -15,8 +15,8 @@ body {
 .box {
   display: flex;
   flex-direction: column;
-  border: 2px solid #aaa719;
-  background-color: #d4d37f;
+  border: 2px solid #86673e;
+  background-color: #ffebcd;
   margin: 0.5rem 0;
   padding: 10px;
   width: 300px;
@@ -26,6 +26,9 @@ body {
 .text {
   width: 100%;
   text-align: justify;
+  margin: 0;
+  color: #2b1000;
+  font-size: 1.3rem;
 }
 
 .box:last-child {
@@ -44,38 +47,39 @@ body {
   margin-top: 10px;
   cursor: pointer;
   font-size: 0.8rem;
+  font-weight: bold;
   color: #fff;
   outline: none;
 }
 
-.light {
-  background-color: #4eafc9;
-  border: 2px solid #2a89a2;
-}
-
-.red {
-  background-color: #dda66d;
+.edit-btn {
+  background-color: #e0be43;
   border: 2px solid #b6821a;
 }
 
-.success {
-  background-color: #43aa53;
-  border: 2px solid #037314;
-}
-
-.success:hover {
-  background-color: #2d873b;
-  border: 2px solid #036511;
-}
-
-.light:hover {
-  background-color: #2a89a2;
-  border-color: #1d6f85;
-}
-
-.red:hover {
+.edit-btn:hover {
   background-color: #b6821a;
   border-color: #946912;
+}
+
+.remove-btn {
+  background-color: #da755a;
+  border: 2px solid #b04b30;
+}
+
+.remove-btn:hover {
+  background-color: #bb563a;
+  border-color: #952c10;
+}
+
+.save-btn {
+  background-color: #e9b20c;
+  border: 2px solid #f69b11;
+}
+
+.save-btn:hover {
+  background-color: #c79910;
+  border-color: #ab6d10;
 }
 
 textarea {

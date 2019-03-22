@@ -31,17 +31,17 @@ code {
   padding-top: 1rem;
   padding-left: 0.6rem;
 }
-/* 
+
 .task-input--error {
-  border: 2px solid ##d40d0d;
-} */
+  border: 3px solid #ed0000;
+}
 
 .btn.new-task-btn {
   border: 2px solid #b36f1f;
   background-color: #f1c734;
   border-radius: 50%;
   font-size: 1.5rem;
-  font-style: bold;
+  font-weight: bold;
   width: 2rem;
   height: 2rem;
   padding: 0;

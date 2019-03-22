@@ -8,7 +8,8 @@ class Wrapper extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: []
+      tasks: [],
+      classForNotFilledTask: ""
     };
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
@@ -20,13 +21,15 @@ class Wrapper extends React.Component {
   addTask() {
     let text = this.newTaskInputRef.value;
     if (text === "") {
-      // this.newTaskInputRef.classList.add('task-input--error');
+      this.setState({classForNotFilledTask: "task-input--error"});
       return alert('You need to enter a task.');
+    } else {
+      this.setState({classForNotFilledTask: ""});
     }
     let arrOfTasks = this.state.tasks;
     arrOfTasks.push(text);
     this.setState({tasks: arrOfTasks});
-    this.newTaskInputRef.value = '';
+    this.newTaskInputRef.value = "";
   }
 
   deleteTask(i) {
@@ -57,8 +60,8 @@ class Wrapper extends React.Component {
     return (
       <div className="wrapper">
         <div className="input-task-wrapper">
-          <textarea className="task-input" autoFocus={true} rows="2" ref={this._getNewTaskRef}
-            placeholder="Write your task here">
+          <textarea className={`task-input ${this.state.classForNotFilledTask}`} autoFocus={true} rows="2" ref={this._getNewTaskRef}
+            placeholder="Enter new task here">
           </textarea>
           <button onClick={this.addTask} className="btn new-task-btn">+</button>
         </div>
