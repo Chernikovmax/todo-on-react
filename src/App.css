@@ -1,5 +1,5 @@
 body {
-  background-color: #ebdab0;
+  background-color: #dbe79f;
 }
 
 .wrapper {
@@ -12,15 +12,34 @@ body {
   font-size: 1.3em;
 }
 
-.box {
+.task {
   display: flex;
   flex-direction: column;
-  border: 2px solid #86673e;
-  background-color: #ffebcd;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+  padding: 1rem 2rem 1rem 5rem;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+  background-size: 100% 3rem;
+  line-height: 3rem;
   margin: 0.5rem 0;
-  padding: 10px;
-  width: 300px;
+  padding: 10px 65px 10px 10px;
+  min-width: 600px;
+  max-width: 70%;
+  min-height: 75px;
   height: auto;
+  position: relative;
+}
+
+.task:before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  top: 0;
+  right: 50px;
+  bottom: 0;
+  border: 1px solid;
+  border-color: transparent #e0aa7e;
 }
 
 .text {
@@ -31,63 +50,63 @@ body {
   font-size: 1.3rem;
 }
 
-.box:last-child {
+.task:last-child {
   margin-bottom: 0;
 }
 
 .buttons {
+  position: absolute;
+  right: 5px;
   display: flex;
-  justify-content: space-around;
-  margin-top: 1rem;
+  flex-direction: column;
 }
 
 .btn {
-  margin-right: 10px;
-  padding: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #fff;
-  outline: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 2px 0;
 }
 
 .edit-btn {
-  background-color: #e0be43;
-  border: 2px solid #b6821a;
+  background-color: transparent;
+  border: none;
 }
 
 .edit-btn:hover {
-  background-color: #b6821a;
-  border-color: #946912;
+  background-color: #f2ca7a;
 }
 
 .remove-btn {
-  background-color: #da755a;
-  border: 2px solid #b04b30;
+  background-color: transparent;
+  border: none;
 }
 
 .remove-btn:hover {
-  background-color: #bb563a;
-  border-color: #952c10;
+  background-color: #ee8f75;
 }
 
 .save-btn {
-  background-color: #e9b20c;
-  border: 2px solid #f69b11;
+  background-color: transparent;
+  border: none;
 }
 
 .save-btn:hover {
-  background-color: #c79910;
-  border-color: #ab6d10;
+  background-color: #c3f7ab;
+}
+
+.task__modification-field {
+  border: 2px solid #e2ac74;
+  font-size: 1.5rem;
 }
 
 textarea {
   display: block;
   width: 100%;
-  -webkit-box-sizing: border-box;
+  -webkit-task-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-  border: 2px solid #6c54bf;
+  border-radius: 5px;
+  padding: 10px;
   resize: none;
 }

@@ -6,6 +6,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  min-height: 100vh;
+  max-height: auto;
 }
 
 code {
@@ -13,8 +16,8 @@ code {
     monospace;
 }
 
-#root {
-  width: 100%;
+.react-container {
+  width: 95%;
 }
 
 .input-task-wrapper {
@@ -27,9 +30,11 @@ code {
 .task-input {
   width: 90%;
   border: none;
-  border-bottom: 2px solid #6e4d0c;
+  border-bottom: 2px solid #f9a400;
   padding-top: 1rem;
   padding-left: 0.6rem;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+  margin-bottom: 0.5rem;
 }
 
 .task-input--error {
@@ -37,10 +42,10 @@ code {
 }
 
 .btn.new-task-btn {
-  border: 2px solid #b36f1f;
-  background-color: #f1c734;
+  border: none;
+  background-color: #ebcd65;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   width: 2rem;
   height: 2rem;
@@ -49,6 +54,5 @@ code {
 }
 
 .btn.new-task-btn:hover {
-  border-color: #8f520b;
-  background-color: #be9506;
+  background-color: #ffca2a;
 }

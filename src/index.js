@@ -63,7 +63,9 @@ class Wrapper extends React.Component {
           <textarea className={`task-input ${this.state.classForNotFilledTask}`} autoFocus={true} rows="2" ref={this._getNewTaskRef}
             placeholder="Enter new task here">
           </textarea>
-          <button onClick={this.addTask} className="btn new-task-btn">+</button>
+          <button onClick={this.addTask} className="btn new-task-btn">
+            +
+          </button>
         </div>
         {this.state.tasks.map(this.sortOutTasks)}
       </div>
