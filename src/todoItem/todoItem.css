@@ -1,24 +1,9 @@
-body {
-  background-color: #dbe79f;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  width: 98%;
-  color: #fff;
-  font-size: 1.3em;
-}
-
-.task {
+.todo-item {
   display: flex;
   flex-direction: column;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
-  padding: 1rem 2rem 1rem 5rem;
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
   background-size: 100% 3rem;
   line-height: 3rem;
@@ -31,7 +16,7 @@ body {
   position: relative;
 }
 
-.task:before {
+.todo-item:before {
   content: '';
   position: absolute;
   width: 4px;
@@ -42,7 +27,7 @@ body {
   border-color: transparent #e0aa7e;
 }
 
-.text {
+.todo-item__value {
   width: 100%;
   text-align: justify;
   margin: 0;
@@ -50,57 +35,18 @@ body {
   font-size: 1.3rem;
 }
 
-.task:last-child {
+.todo-item:last-child {
   margin-bottom: 0;
 }
 
-.buttons {
+.todo-item__buttons-container {
   position: absolute;
   right: 5px;
   display: flex;
   flex-direction: column;
 }
 
-.btn {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin: 2px 0;
-}
-
-.edit-btn {
-  background-color: transparent;
-  border: none;
-}
-
-.edit-btn:hover {
-  background-color: #f2ca7a;
-}
-
-.remove-btn {
-  background-color: transparent;
-  border: none;
-}
-
-.remove-btn:hover {
-  background-color: #ee8f75;
-}
-
-.save-btn {
-  background-color: transparent;
-  border: none;
-}
-
-.save-btn:hover {
-  background-color: #c3f7ab;
-}
-
-.task__modification-field {
-  border: 2px solid #e2ac74;
-  font-size: 1.5rem;
-}
-
-textarea {
+.todo-item__input {
   display: block;
   width: 100%;
   -webkit-task-sizing: border-box;
@@ -109,4 +55,5 @@ textarea {
   border-radius: 5px;
   padding: 10px;
   resize: none;
+  font-size: 1.5rem;
 }

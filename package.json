@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://chernikovmax.github.io/react-todo-page/",
   "dependencies": {
+    "classnames": "^2.2.6",
     "eslint": "^5.12.0",
     "gh-pages": "^2.0.1",
     "react": "^16.8.4",
