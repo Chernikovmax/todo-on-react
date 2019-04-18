@@ -16,6 +16,13 @@ export class TodoItem extends React.Component {
     this.setState({edit: false});
   };
 
+  saveTaskOnEnter = (event) => {
+    if (event.key !== 'Enter') {
+      return;
+    }
+    return this.handleOnSave();
+  };
+
   handleOnRemove = () => {
     const {onDelete, index} = this.props;
     onDelete(index);
@@ -44,8 +51,11 @@ export class TodoItem extends React.Component {
   renderOnEdit() {
     return (
       <div className="todo-item">
-        <textarea className="todo-item__input" autoFocus={true} rows="6" ref={this._getRef}
-                  defaultValue={this.props.children}/>
+        <input className="todo-item__input" autoFocus={true}
+            ref={this._getRef}
+            defaultValue={this.props.children}
+            onKeyDown={this.saveTaskOnEnter}
+        />
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnSave} styleType="green">
             <SaveIcon/>

@@ -24,6 +24,13 @@ export class App extends React.Component {
     this.newTaskInputRef.value = "";
   };
 
+  addTaskOnEnter = (event) => {
+    if (event.key !== 'Enter') {
+      return;
+    }
+    return this.addTask();
+  };
+
   deleteTask = (elementPosition) => {
     const {tasks} = this.state;
     this.setState({tasks: tasks.filter((x, position) => position !== elementPosition)});
@@ -53,10 +60,11 @@ export class App extends React.Component {
     return (
       <div className="app">
         <div className="todo-input__container">
-          <textarea className={cx('todo_input', isError && "todo_input--error")} autoFocus={true} rows="2"
-                    ref={this._getNewTaskRef}
-                    placeholder="Enter new task here">
-          </textarea>
+          <input className={cx('todo_input', isError && "todo_input--error")} autoFocus={true}
+              ref={this._getNewTaskRef}
+              onKeyDown={this.addTaskOnEnter}
+              placeholder="Enter new task here">
+          </input>
           <Button
             onClick={this.addTask}
             className="new-task__btn"
@@ -69,4 +77,27 @@ export class App extends React.Component {
       </div>
     )
   }
+  //
+  // render() {
+  //   const {isError, tasks} = this.state;
+  //   return (
+  //     <div className="app">
+  //       <div className="todo-input__container">
+  //         <textarea className={cx('todo_input', isError && "todo_input--error")} autoFocus={true} rows="2"
+  //                   ref={this._getNewTaskRef}
+  //                   onKeyDown={this.addTaskOnEnter}
+  //                   placeholder="Enter new task here">
+  //         </textarea>
+  //         <Button
+  //           onClick={this.addTask}
+  //           className="new-task__btn"
+  //           styleType='yellow'
+  //         >
+  //           <PlusIcon />
+  //         </Button>
+  //       </div>
+  //       {tasks.map(this.renderItem)}
+  //     </div>
+  //   )
+  // }
 }
