@@ -2,7 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 import './todoItem.css';
 import {Button} from '../components/button';
-import {DeleteIcon, EditIcon, SaveIcon} from '../components/icons';
+import {DeleteIcon, EditIcon, SaveIcon, CheckboxIcon} from '../components/icons';
 
 export class TodoItem extends React.Component {
   state = {edit: false};
@@ -10,6 +10,11 @@ export class TodoItem extends React.Component {
   handleOnEdit = () => {
     this.setState({edit: true});
   };
+
+  handleOnCheck = () => {
+    const {onCheck} = this.props;
+    onCheck(this.props.index);
+  }
 
   handleOnSave = () => {
     const {onEdit} = this.props;
@@ -37,10 +42,16 @@ export class TodoItem extends React.Component {
     return (
       <div className="todo-item">
         <input  type="checkbox"
-                defaultChecked={true}
-                id={1}
-                className={cx('todo-item__checkbox')}/>
-        <label className="todo-item__value">{this.props.children}</label>
+                id={this.props.children.index}
+                className="todo-item__checkbox"
+                onClick={this.handleOnCheck}
+        />
+        <label  htmlFor={this.props.children.index}
+                className={cx('todo-item__value', this.props.children.isDone && "task--done")}
+        >
+          <CheckboxIcon/>
+          {this.props.children.val}
+        </label>
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnEdit} styleType="yellow">
             <EditIcon/>
@@ -58,7 +69,7 @@ export class TodoItem extends React.Component {
       <div className="todo-item">
         <input className="todo-item__input" autoFocus={true}
             ref={this._getRef}
-            defaultValue={this.props.children}
+            defaultValue={this.props.children.val}
             onKeyDown={this.saveTaskOnEnter}
         />
         <section className="todo-item__buttons-container">

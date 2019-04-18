@@ -3,7 +3,7 @@ import React from 'react';
 
 import {TodoItem} from '../todoItem';
 import {Button} from '../components/button';
-import {PlusIcon} from '../components/icons/plusIcon.jsx';
+import {PlusIcon} from '../components/icons';
 import './app.css';
 
 export class App extends React.Component {
@@ -19,7 +19,7 @@ export class App extends React.Component {
       return alert('You need to enter a task.');
     }
     const {tasks} = this.state;
-    const newTasks = [...tasks, value];
+    const newTasks = [...tasks, {val: value, index: Date.now(), isDone: false}];
     this.setState({tasks: newTasks, isError: false});
     this.newTaskInputRef.value = "";
   };
@@ -39,13 +39,24 @@ export class App extends React.Component {
   editTask = (text, i) => {
     const {tasks} = this.state;
     const newTasks = [...tasks];
-    newTasks[i] = text;
+    newTasks[i].val =  text;
+    this.setState({tasks: newTasks});
+  };
+
+  toggleTaskStatus = (i) => {
+    const {tasks} = this.state;
+    const newTasks = [...tasks];
+    newTasks[i].isDone = !newTasks[i].isDone;
     this.setState({tasks: newTasks});
   };
 
   renderItem = (item, i) => {
     return (
-      <TodoItem key={i} index={i} onEdit={this.editTask} onDelete={this.deleteTask}>
+      <TodoItem key={i} index={i}
+                onEdit={this.editTask}
+                onDelete={this.deleteTask}
+                onCheck={this.toggleTaskStatus}
+      >
         {item}
       </TodoItem>
     );
