@@ -67,10 +67,11 @@ export class TodoItem extends React.Component {
   renderOnEdit() {
     return (
       <div className="todo-item">
-        <input className="todo-item__input" autoFocus={true}
-            ref={this._getRef}
-            defaultValue={this.props.children.val}
-            onKeyDown={this.saveTaskOnEnter}
+        <input  className="todo-item__input"
+                autoFocus={true}
+                ref={this._getRef}
+                defaultValue={this.props.children.val}
+                onKeyDown={this.saveTaskOnEnter}
         />
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnSave} styleType="green">

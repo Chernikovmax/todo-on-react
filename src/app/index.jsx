@@ -71,10 +71,12 @@ export class App extends React.Component {
     return (
       <div className="app">
         <div className="todo-input__container">
-          <input className={cx('todo_input', isError && "todo_input--error")} autoFocus={true}
-              ref={this._getNewTaskRef}
-              onKeyDown={this.addTaskOnEnter}
-              placeholder="Enter new task here">
+          <input  className={cx('todo_input', isError && "todo_input--error")} 
+                  autoFocus={true}
+                  ref={this._getNewTaskRef}
+                  onKeyDown={this.addTaskOnEnter}
+                  placeholder="Enter new task here"
+          >
           </input>
           <Button
             onClick={this.addTask}
