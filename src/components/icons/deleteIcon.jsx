@@ -2,7 +2,7 @@ import React from 'react';
 
 export const DeleteIcon = () => (
   <div className="btn-aligner">
-    <svg height='95%' viewBox='-61 -21 682 682.66669' width='95%' xmlns='http://www.w3.org/2000/svg'>
+    <svg height='100%' viewBox='-61 -21 682 682.66669' width='100%' xmlns='http://www.w3.org/2000/svg'>
       <path d='m477.667969 0v640h-480v-508.199219l131.800781-131.800781zm0 0'
         fill='#c6c5ca' />
       <path d='m397.667969 240v-40h-320v120h240v40h-240v40h240v40h-240v40h240v160h160v-400zm0 0'

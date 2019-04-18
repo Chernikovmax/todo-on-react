@@ -77,27 +77,4 @@ export class App extends React.Component {
       </div>
     )
   }
-  //
-  // render() {
-  //   const {isError, tasks} = this.state;
-  //   return (
-  //     <div className="app">
-  //       <div className="todo-input__container">
-  //         <textarea className={cx('todo_input', isError && "todo_input--error")} autoFocus={true} rows="2"
-  //                   ref={this._getNewTaskRef}
-  //                   onKeyDown={this.addTaskOnEnter}
-  //                   placeholder="Enter new task here">
-  //         </textarea>
-  //         <Button
-  //           onClick={this.addTask}
-  //           className="new-task__btn"
-  //           styleType='yellow'
-  //         >
-  //           <PlusIcon />
-  //         </Button>
-  //       </div>
-  //       {tasks.map(this.renderItem)}
-  //     </div>
-  //   )
-  // }
 }

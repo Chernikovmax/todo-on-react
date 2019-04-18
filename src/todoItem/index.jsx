@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import React from 'react';
 import './todoItem.css';
 import {Button} from '../components/button';
@@ -35,7 +36,11 @@ export class TodoItem extends React.Component {
   renderItem() {
     return (
       <div className="todo-item">
-        <p className="todo-item__value">{this.props.children}</p>
+        <input  type="checkbox"
+                defaultChecked={true}
+                id={1}
+                className={cx('todo-item__checkbox')}/>
+        <label className="todo-item__value">{this.props.children}</label>
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnEdit} styleType="yellow">
             <EditIcon/>

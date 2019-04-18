@@ -1,6 +1,6 @@
 .todo-item {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
@@ -11,7 +11,7 @@
   padding: 10px 65px 10px 10px;
   min-width: 600px;
   max-width: 70%;
-  min-height: 75px;
+  min-height: 45px;
   height: auto;
   position: relative;
 }
@@ -21,7 +21,7 @@
   position: absolute;
   width: 4px;
   top: 0;
-  right: 50px;
+  right: 80px;
   bottom: 0;
   border: 1px solid;
   border-color: transparent #e0aa7e;
@@ -43,7 +43,8 @@
   position: absolute;
   right: 5px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  width: 70px;
 }
 
 .todo-item__input {
@@ -52,7 +53,7 @@
   -webkit-task-sizing: border-box;
   -moz-box-sizing: border-box;
   border: 2px solid #dfbe5a;
-  width: 100%;
+  width: 92%;
   padding: 10px;
   border-radius: 5px;
   font-size: 1.3rem;
