@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import React from 'react';
+import uuid from "uuid";
 
 import {TodoItem} from '../todoItem';
 import {Button} from '../components/buttons';
@@ -39,7 +40,7 @@ export class App extends React.Component {
       return alert('You need to enter a task.');
     }
     const {tasks} = this.state;
-    const newTasks = [...tasks, {val: value, index: tasks.length, isDone: false}];
+    const newTasks = [...tasks, {val: value, index: uuid.v1(), isDone: false}];
     this.setState({tasks: newTasks, isError: false});
     this.newTaskInputRef.value = "";
   };
@@ -51,22 +52,46 @@ export class App extends React.Component {
     return this.addTask();
   };
 
-  deleteTask = (elementPosition) => {
+  deleteTask = (index) => {
     const {tasks} = this.state;
+    let elementPosition;
+
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].index === index) {
+        elementPosition = i;
+        break;
+      }
+    }
     this.setState({tasks: tasks.filter((x, position) => position !== elementPosition)});
   };
 
-  editTask = (text, i) => {
+  editTask = (text, index) => {
     const {tasks} = this.state;
     const newTasks = [...tasks];
-    newTasks[i].val =  text;
+    let elementPosition;
+
+    for (let i = 0; i < newTasks.length; i++) {
+      if (newTasks[i].index === index) {
+        elementPosition = i;
+        break;
+      }
+    }
+    newTasks[elementPosition].val =  text;
     this.setState({tasks: newTasks});
   };
 
-  toggleTaskStatus = (i) => {
+  toggleTaskStatus = (index) => {
     const {tasks} = this.state;
     const newTasks = [...tasks];
-    newTasks[i].isDone = !newTasks[i].isDone;
+    let elementPosition;
+
+    for (let i = 0; i < newTasks.length; i++) {
+      if (newTasks[i].index === index) {
+        elementPosition = i;
+        break;
+      }
+    }
+    newTasks[elementPosition].isDone = !newTasks[elementPosition].isDone;
     this.setState({tasks: newTasks});
   };
 
