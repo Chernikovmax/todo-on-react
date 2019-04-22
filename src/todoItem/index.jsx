@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import React from 'react';
 import './todoItem.css';
-import {Button} from '../components/button';
+import {Button} from '../components/buttons';
 import {DeleteIcon, EditIcon, SaveIcon, CheckboxIcon} from '../components/icons';
 
 export class TodoItem extends React.Component {
@@ -12,13 +12,13 @@ export class TodoItem extends React.Component {
   };
 
   handleOnCheck = () => {
-    const {onCheck} = this.props;
-    onCheck(this.props.index);
+    const {onCheck, index} = this.props;
+    onCheck(index);
   }
 
   handleOnSave = () => {
-    const {onEdit} = this.props;
-    onEdit(this.textArea.value, this.props.index);
+    const {onEdit, index} = this.props;
+    onEdit(this.input.value, index);
     this.setState({edit: false});
   };
 
@@ -35,22 +35,23 @@ export class TodoItem extends React.Component {
   };
 
   _getRef = (node) => {
-    this.textArea = node;
+    this.input = node;
   };
 
   renderItem() {
+    const {index, isDone, val} = this.props.children;
     return (
       <div className="todo-item">
         <input  type="checkbox"
-                id={this.props.children.index}
+                id={index}
                 className="todo-item__checkbox"
-                onClick={this.handleOnCheck}
         />
-        <label  htmlFor={this.props.children.index}
-                className={cx('todo-item__value', this.props.children.isDone && "task--done")}
+        <label  htmlFor={index}
+                className={cx('todo-item__value', isDone && "task--done")}
+                onClick={this.handleOnCheck}
         >
-          <CheckboxIcon/>
-          {this.props.children.val}
+          <CheckboxIcon fillingStatus={isDone} />
+          {val}
         </label>
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnEdit} styleType="yellow">
@@ -65,12 +66,13 @@ export class TodoItem extends React.Component {
   }
 
   renderOnEdit() {
+    const {val} = this.props.children;
     return (
       <div className="todo-item">
         <input  className="todo-item__input"
                 autoFocus={true}
                 ref={this._getRef}
-                defaultValue={this.props.children.val}
+                defaultValue={val}
                 onKeyDown={this.saveTaskOnEnter}
         />
         <section className="todo-item__buttons-container">

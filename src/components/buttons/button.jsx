@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import './button.css';
+import './buttons.css';
 
 export const Button = ({
                          children,

@@ -46,15 +46,24 @@
   height: 100%;
 }
 
-input[type="checkbox"]:checked+label .checkbox-btn {
+.checkbox--filled {
   border: none;
   width: 26px;
   height: 26px;
 }
 
-input[type="checkbox"]:checked+label .checkbox-btn>svg {
+.checkbox--filled > svg {
   display: block;
 }
+/* input[type="checkbox"]:checked+label .checkbox-btn {
+  border: none;
+  width: 26px;
+  height: 26px;
+}
+
+input[type="checkbox"]:checked+label .checkbox-btn > svg {
+  display: block;
+} */
 
 .todo-item__value {
   display: inline-flex;

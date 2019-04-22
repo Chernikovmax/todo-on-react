@@ -2,14 +2,34 @@ import cx from 'classnames';
 import React from 'react';
 
 import {TodoItem} from '../todoItem';
-import {Button} from '../components/button';
+import {Button} from '../components/buttons';
+import {StatusButton} from '../components/buttons';
 import {PlusIcon} from '../components/icons';
 import './app.css';
 
 export class App extends React.Component {
   state = {
     tasks: [],
-    isError: false
+    isError: false,
+    allTasksDisplayed: true,
+    todoTasksDisplayed: false,
+    doneTasksDisplayed: false
+  };
+
+  renderAllTasks = () => {
+    this.setState({todoTasksDisplayed: false});
+    this.setState({doneTasksDisplayed: false});
+    this.setState({allTasksDisplayed: true});
+  };
+  renderToDoTasks = () => {
+    this.setState({doneTasksDisplayed: false});
+    this.setState({allTasksDisplayed: false});
+    this.setState({todoTasksDisplayed: true});
+  };
+  renderDoneTasks = () => {
+    this.setState({allTasksDisplayed: false});
+    this.setState({todoTasksDisplayed: false});
+    this.setState({doneTasksDisplayed: true});
   };
 
   addTask = () => {
@@ -19,7 +39,7 @@ export class App extends React.Component {
       return alert('You need to enter a task.');
     }
     const {tasks} = this.state;
-    const newTasks = [...tasks, {val: value, index: Date.now(), isDone: false}];
+    const newTasks = [...tasks, {val: value, index: tasks.length, isDone: false}];
     this.setState({tasks: newTasks, isError: false});
     this.newTaskInputRef.value = "";
   };
@@ -52,7 +72,7 @@ export class App extends React.Component {
 
   renderItem = (item, i) => {
     return (
-      <TodoItem key={i} index={i}
+      <TodoItem key={i} index={item.index}
                 onEdit={this.editTask}
                 onDelete={this.deleteTask}
                 onCheck={this.toggleTaskStatus}
@@ -67,11 +87,32 @@ export class App extends React.Component {
   };
 
   render() {
-    const {isError, tasks} = this.state;
+    const {isError, tasks, allTasksDisplayed, todoTasksDisplayed,doneTasksDisplayed} = this.state;
     return (
       <div className="app">
         <div className="todo-input__container">
-          <input  className={cx('todo_input', isError && "todo_input--error")} 
+            <StatusButton
+              status={allTasksDisplayed}
+              onClick={this.renderAllTasks}
+              styleType="all"
+            >
+              ALL
+            </StatusButton>
+            <StatusButton
+              status={todoTasksDisplayed}
+              onClick={this.renderToDoTasks}
+              styleType="todo"
+            >
+              TO DO
+            </StatusButton>
+            <StatusButton
+              status={doneTasksDisplayed}
+              onClick={this.renderDoneTasks}
+              styleType="done"
+            >
+              DONE
+            </StatusButton>
+          <input  className={cx('todo_input', isError && "todo_input--error")}
                   autoFocus={true}
                   ref={this._getNewTaskRef}
                   onKeyDown={this.addTaskOnEnter}
@@ -81,12 +122,24 @@ export class App extends React.Component {
           <Button
             onClick={this.addTask}
             className="new-task__btn"
-            styleType='yellow'
+            styleType='blue'
           >
             <PlusIcon />
           </Button>
         </div>
-        {tasks.map(this.renderItem)}
+
+        { (() => {
+            switch(true) {
+                case allTasksDisplayed :
+                  return tasks.map(this.renderItem);
+                case todoTasksDisplayed :
+                  return tasks.filter(task => task.isDone === false).map(this.renderItem);
+                case doneTasksDisplayed :
+                  return tasks.filter(task => task.isDone === true).map(this.renderItem);
+                default:
+            }
+          })()
+        }
       </div>
     )
   }

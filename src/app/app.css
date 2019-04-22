@@ -11,34 +11,23 @@
 .todo-input__container {
   display: flex;
   flex-direction: row;
-  width: 500px;
+  align-items: center;
+  width: 700px;
   justify-content: space-between;
 }
 
 .todo_input {
-  width: 90%;
+  width: 68%;
   height: 2rem;
   border: none;
   border-bottom: 2px solid #f9a400;
   padding-top: 0.2rem;
   padding-left: 0.6rem;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 0.5rem;
   border-radius: 5px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 .todo_input--error {
   border: 2px solid #ed0000;
-}
-
-.new-task__btn {
-  border: none;
-  background-color: #ebcd65;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  font-weight: bold;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  margin-top: 0.18rem;
 }

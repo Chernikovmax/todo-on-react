@@ -1,7 +1,8 @@
 import React from 'react';
+import cx from 'classnames';
 
-export const CheckboxIcon = () => (
-  <div className="btn-aligner checkbox-btn">
+export const CheckboxIcon = ({fillingStatus}) => (
+  <div className={cx('btn-aligner', 'checkbox-btn', fillingStatus && 'checkbox--filled')}>
     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 507.2 507.2'>
       <circle cx='253.6' cy='253.6' r='253.6' fill='#32ba7c' />
       <path d='M188.8,368l130.4,130.4c108-28.8,188-127.2,188-244.8c0-2.4,0-4.8,0-7.2L404.8,152L188.8,368z'
