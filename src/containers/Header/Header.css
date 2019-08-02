@@ -1,0 +1,40 @@
+.header-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-filter-btn {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  color: #dbe79f;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.task-filter-btn:hover {
+  box-shadow: 5px 5px 0 #ccc;
+}
+
+.btn--all {
+  background-color: #8879ab;
+}
+
+.btn--todo {
+  background-color: #ba6732;
+}
+
+.btn--done {
+  background-color: #32ba7c;
+}
+
+.btn--active {
+  height: 25px;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 5px 5px 0 #ccc;
+}

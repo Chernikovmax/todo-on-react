@@ -1,42 +1,3 @@
-.task-status-btn {
-  border: none;
-  border-top-left-radius: 20%;
-  border-bottom-right-radius: 20%;
-  height: 30px;
-  color: #dbe79f;
-  font-weight: bold;
-}
-
-.task-status-btn:hover {
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
-}
-
-.task-status-btn--all {
-  background-color: #8879ab;
-}
-
-.task-status-btn--todo {
-  background-color: #ba6732;
-}
-
-.task-status-btn--done {
-  background-color: #32ba7c;
-}
-
-.task-status-btn--active {
-  position: relative;
-}
-
-.task-status-btn--active:before {
-  content: '';
-  position: absolute;
-  width: 120%;
-  top: 0;
-  left: -10%;
-  bottom: -4px;
-  border: 1px solid;
-  border-bottom: 3px solid #07b6ed;
-}
 .btn {
   width: 35px;
   height: 35px;
@@ -44,17 +5,6 @@
   margin: 2px 0 7px 0;
   background-color: transparent;
   border: none;
-}
-
-.new-task__btn {
-  border: none;
-  background-color: #1e87a3;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  font-weight: bold;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
 }
 
 .btn--yellow:hover {

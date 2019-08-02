@@ -1,0 +1,31 @@
+.todo-form {
+  display: flex;
+  width: 600px;
+}
+
+.todo-form_input {
+  width: 85%;
+  height: 2rem;
+  border: none;
+  border-bottom: 2px solid #f9a400;
+  padding-top: 0.2rem;
+  padding-left: 0.6rem;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.todo_input--error {
+  background-color: tomato;
+}
+
+.new-task__btn {
+  border: none;
+  background-color: #1e87a3;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+}
