@@ -1,5 +1,5 @@
 .header-container {
-  width: 100%;
+  width: inherit;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -45,9 +45,7 @@
   box-shadow: 5px 5px 0 #a5e3c7;
 }
 
-.btn--active {
-  height: 25px;
-  font-size: 12px;
-  font-weight: bold;
-  box-shadow: 5px 5px 0 #ccc;
+.link--selected {
+  height: 26px;
+  border: 2px solid #fff;
 }
