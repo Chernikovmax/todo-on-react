@@ -8,28 +8,41 @@
 }
 
 .task-filter-btn {
+  padding: 5px 5px 0 5px;
   border: none;
   border-radius: 5px;
   height: 30px;
-  color: #dbe79f;
+  color: #fff;
   font-weight: bold;
   margin-right: 20px;
-}
-
-.task-filter-btn:hover {
-  box-shadow: 5px 5px 0 #ccc;
+  text-decoration: none;
 }
 
 .btn--all {
   background-color: #8879ab;
 }
 
+.btn--all:hover {
+  background-color: #8879ab;
+  box-shadow: 5px 5px 0 #ccc;
+}
+
 .btn--todo {
   background-color: #ba6732;
 }
 
+.btn--todo:hover {
+  background-color: #ba6732;
+  box-shadow: 5px 5px 0 #ddac8d;
+}
+
 .btn--done {
   background-color: #32ba7c;
+}
+
+.btn--done:hover {
+  background-color: #32ba7c;
+  box-shadow: 5px 5px 0 #a5e3c7;
 }
 
 .btn--active {

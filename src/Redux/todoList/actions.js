@@ -42,7 +42,7 @@ export const toggleCheckStatusAction = taskId => ({
 
 export const fetchTasks = () => dispatch => {
   dispatch(getTasksRequest());
-  fetch("https://jsonplaceholder.typicode.com/todos?_limit=30")
+  fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
     .then(data => data.json())
     .then(tasks => dispatch(getTasksSuccess(tasks)))
     .catch(err => dispatch(getTasksFailure(err)));

@@ -38,7 +38,7 @@ export class TodoItem extends React.Component {
   };
 
   renderItem() {
-    const { id, title, onCheck, isCompleted } = this.props;
+    const { id, title, isCompleted } = this.props;
     return (
       <div className="todo-item">
         <input type="checkbox" id={id} className="todo-item__checkbox" />
