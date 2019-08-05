@@ -1,6 +1,7 @@
 .todo-form {
   display: flex;
   width: 600px;
+  position: relative;
 }
 
 .todo-form_input {
@@ -15,8 +16,24 @@
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
-.todo_input--error {
+.input--error {
   background-color: tomato;
+}
+
+.error-message {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: #ead7d7;
+  padding: 5px;
+  border: 1px solid tomato;
+  bottom: -33px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.error--active {
+  display: block;
 }
 
 .new-task__btn {
