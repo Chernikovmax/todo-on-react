@@ -1,103 +1,77 @@
 import React from "react";
+import { connect } from "react-redux";
 import { TodoItem } from "../TodoItem";
-import "./App.css";
 import { Header } from "../Header";
+
+import { Loader } from "../../components/downloadSpinner";
+import {
+  fetchTasks,
+  editTaskAction,
+  deleteTaskAction,
+  toggleCheckStatusAction
+} from "../../Redux/todoList";
 import PropTypes from "prop-types";
 
+import "./App.css";
+
 class App extends React.Component {
-  state = {
-    tasks: []
-  };
-
-  deleteTask = index => {
-    const { tasks } = this.state;
-    let elementPosition;
-
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].index === index) {
-        elementPosition = i;
-        break;
-      }
-    }
-    this.setState({
-      tasks: tasks.filter((x, position) => position !== elementPosition)
-    });
-  };
-
-  editTask = (text, index) => {
-    const { tasks } = this.state;
-    const newTasks = [...tasks];
-    let elementPosition;
-
-    for (let i = 0; i < newTasks.length; i++) {
-      if (newTasks[i].index === index) {
-        elementPosition = i;
-        break;
-      }
-    }
-    newTasks[elementPosition].val = text;
-    this.setState({ tasks: newTasks });
-  };
-
-  toggleTaskStatus = index => {
-    const { tasks } = this.state;
-    const newTasks = [...tasks];
-    let elementPosition;
-
-    for (let i = 0; i < newTasks.length; i++) {
-      if (newTasks[i].index === index) {
-        elementPosition = i;
-        break;
-      }
-    }
-    newTasks[elementPosition].isDone = !newTasks[elementPosition].isDone;
-    this.setState({ tasks: newTasks });
-  };
-
-  renderItem = (item, i) => {
-    return (
-      <TodoItem
-        key={i}
-        index={item.index}
-        onEdit={this.editTask}
-        onDelete={this.deleteTask}
-        onCheck={this.toggleTaskStatus}
-      >
-        {item}
-      </TodoItem>
-    );
-  };
+  componentDidMount() {
+    const { fetchTasks } = this.props;
+    fetchTasks();
+  }
 
   render() {
     const {
-      tasks,
-      allTasksDisplayed,
-      todoTasksDisplayed,
-      doneTasksDisplayed
-    } = this.state;
+      tasks: { data: taskList, isLoading },
+      editTaskAction,
+      deleteTaskAction,
+      toggleCheckStatusAction
+    } = this.props;
+    console.log();
+
     return (
       <div className="app">
         <Header />
-        {(() => {
-          switch (true) {
-            case allTasksDisplayed:
-              return tasks.map(this.renderItem);
-            case todoTasksDisplayed:
-              return tasks
-                .filter(task => task.isDone === false)
-                .map(this.renderItem);
-            case doneTasksDisplayed:
-              return tasks
-                .filter(task => task.isDone === true)
-                .map(this.renderItem);
-            default:
-          }
-        })()}
+        <ul className="tasks-list">
+          {isLoading ? (
+            <Loader />
+          ) : (
+            taskList.map(task => (
+              <TodoItem
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                isCompleted={task.completed}
+                onEdit={editTaskAction}
+                onDelete={deleteTaskAction}
+                onCheck={toggleCheckStatusAction}
+              />
+            ))
+          )}
+        </ul>
       </div>
     );
   }
 }
 
-App.propTypes = {};
+const mapStateToProps = state => ({
+  tasks: state.tasks
+});
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTasks: () => dispatch(fetchTasks()),
+    editTaskAction: ({ title, id }) => dispatch(editTaskAction({ title, id })),
+    deleteTaskAction: id => dispatch(deleteTaskAction(id)),
+    toggleCheckStatusAction: id => dispatch(toggleCheckStatusAction(id))
+  };
+};
+
+App.propTypes = {
+  tasks: PropTypes.object.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

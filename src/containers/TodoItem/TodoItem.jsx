@@ -10,51 +10,45 @@ import {
 } from "../../components/icons";
 
 export class TodoItem extends React.Component {
-  state = { edit: false };
+  state = { edit: false, editedTaskTitle: "" };
 
   handleOnEdit = () => {
     this.setState({ edit: true });
   };
 
   handleOnCheck = () => {
-    const { onCheck, index } = this.props;
-    onCheck(index);
+    const { onCheck, id } = this.props;
+    onCheck(id);
   };
 
   handleOnSave = () => {
-    const { onEdit, index } = this.props;
-    onEdit(this.input.value, index);
-    this.setState({ edit: false });
+    const { onEdit, id } = this.props;
+
+    onEdit({ title: this.state.editedTaskTitle, id });
+    this.setState({ edit: false, editedTaskTitle: "" });
   };
 
-  saveTaskOnEnter = event => {
-    if (event.key !== "Enter") {
-      return;
-    }
-    return this.handleOnSave();
+  OnChangeTask = event => {
+    this.setState({ ...this.state, editedTaskTitle: event.target.value });
   };
 
   handleOnRemove = () => {
-    const { onDelete, index } = this.props;
-    onDelete(index);
-  };
-
-  _getRef = node => {
-    this.input = node;
+    const { onDelete, id } = this.props;
+    onDelete(id);
   };
 
   renderItem() {
-    const { index, isDone, val } = this.props.children;
+    const { id, title, onCheck, isCompleted } = this.props;
     return (
       <div className="todo-item">
-        <input type="checkbox" id={index} className="todo-item__checkbox" />
+        <input type="checkbox" id={id} className="todo-item__checkbox" />
         <label
-          htmlFor={index}
-          className={cx("todo-item__value", isDone && "task--done")}
+          htmlFor={id}
+          className={cx("todo-item__value", isCompleted && "task--done")}
           onClick={this.handleOnCheck}
         >
-          <CheckboxIcon fillingStatus={isDone} />
-          {val}
+          <CheckboxIcon fillingStatus={isCompleted} />
+          {title}
         </label>
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnEdit} styleType="yellow">
@@ -69,15 +63,14 @@ export class TodoItem extends React.Component {
   }
 
   renderOnEdit() {
-    const { val } = this.props.children;
+    const { title } = this.props;
     return (
       <div className="todo-item">
         <input
           className="todo-item__input"
           autoFocus={true}
-          ref={this._getRef}
-          defaultValue={val}
-          onKeyDown={this.saveTaskOnEnter}
+          defaultValue={title}
+          onChange={this.OnChangeTask}
         />
         <section className="todo-item__buttons-container">
           <Button onClick={this.handleOnSave} styleType="green">
